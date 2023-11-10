@@ -20,7 +20,7 @@ def count():
 @app.post('/result/')
 def result():
     user_input = request.form['userinput']
-    word_dict = dict(Counter(user_input.strip()))
+    word_dict = dict(Counter(user_input.split()))
     result = json.dumps(word_dict)
 
     return Response(result, mimetypes='application/json', headers={'Content-Disposition': 'attachment; filename=count.json' })
