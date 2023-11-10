@@ -1,4 +1,5 @@
-from flask import Flask
+
+from flask import Flask, render_template, request, Response
 from collections import Counter
 import json
 app = Flask(__name__)
@@ -11,3 +12,15 @@ def hello_world():
 
     return result
 
+@app.get('/count')
+def count():
+
+    return render_template('count.html')
+
+@app.post('/result/')
+def result():
+    user_input = request.form['userinput']
+    word_dict = dict(Counter(user_input.strip()))
+    result = json.dumps(word_dict)
+
+    return Response(result, mimetypes='application/json', headers={'Content-Disposition': 'attachment; filename="count.json"' })
