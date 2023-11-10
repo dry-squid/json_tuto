@@ -23,4 +23,4 @@ def result():
     word_dict = dict(Counter(user_input.strip()))
     result = json.dumps(word_dict)
 
-    return Response(result, mimetypes='application/json', headers={'Content-Disposition': 'attachment; filename="count.json"' })
+    return Response(result, mimetypes='application/json', headers={'Content-Disposition': 'attachment; filename=count.json' })
